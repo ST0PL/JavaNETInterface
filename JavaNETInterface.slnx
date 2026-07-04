@@ -1,0 +1,16 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="JavaNETAgent/JavaNETAgent.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="Debug|x86" Project="x64" />
+    <Build Solution="Release|*" Project="false" />
+  </Project>
+  <Project Path="JavaNETInterface/JavaNETInterface.csproj">
+    <Platform Solution="*|x64" Project="x64" />
+    <Platform Solution="Debug|x86" Project="x64" />
+    <Platform Solution="Release|x86" Project="x86" />
+  </Project>
+</Solution>
