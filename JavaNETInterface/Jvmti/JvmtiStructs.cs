@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace JavaNETInterface.Jvmti;
 
-public unsafe partial struct JRawMonitorID { public void* Handle; }
+public unsafe struct JRawMonitorID { public void* Handle; }
 
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct JvmtiThreadInfo
@@ -203,7 +203,7 @@ public unsafe struct JvmtiAddrLocationMap
 }
 
 [StructLayout(LayoutKind.Sequential)]
-public unsafe struct JvmtiCapabilities
+public struct JvmtiCapabilities
 {
     public uint Word0;
     public uint Word1;

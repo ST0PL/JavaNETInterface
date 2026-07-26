@@ -3,7 +3,6 @@ using System.Collections;
 
 namespace JavaNETInterface.Wrappers
 {
-
     public unsafe class JList : JniObject, IEnumerable<JObjectPtr>
     {
         public unsafe class JListEnum(JniEnv* env, JObject* obj) : IEnumerator<JObjectPtr>

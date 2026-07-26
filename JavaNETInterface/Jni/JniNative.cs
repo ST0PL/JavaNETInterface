@@ -3,26 +3,26 @@ using System.Runtime.InteropServices;
 
 namespace JavaNETInterface.Jni
 {
-    public unsafe partial struct JObject { public void* Handle; }
-    public unsafe partial struct JClass { public void* Handle; }
-    public unsafe partial struct JThrowable { public void* Handle; }
-    public unsafe partial struct JString { public void* Handle; }
-    public unsafe partial struct JArray { public void* Handle; }
-    public unsafe partial struct JBooleanArray { public void* Handle; }
-    public unsafe partial struct JByteArray { public void* Handle; }
-    public unsafe partial struct JCharArray { public void* Handle; }
-    public unsafe partial struct JShortArray { public void* Handle; }
-    public unsafe partial struct JIntArray { public void* Handle; }
-    public unsafe partial struct JLongArray { public void* Handle; }
-    public unsafe partial struct JFloatArray { public void* Handle; }
-    public unsafe partial struct JDoubleArray { public void* Handle; }
-    public unsafe partial struct JObjectArray { public void* Handle; }
-    public unsafe partial struct JFieldID { public void* Handle; }
-    public unsafe partial struct JMethodID { public void* Handle; }
-    public unsafe partial struct JWeak { public void* Handle; }
+    public struct JObject { }
+    public struct JClass { }
+    public struct JThrowable { }
+    public struct JString { }
+    public struct JArray { }
+    public struct JBooleanArray { }
+    public struct JByteArray { }
+    public struct JCharArray { }
+    public struct JShortArray { }
+    public struct JIntArray { }
+    public struct JLongArray { }
+    public struct JFloatArray { }
+    public struct JDoubleArray { }
+    public struct JObjectArray { }
+    public struct JFieldID { }
+    public struct JMethodID { }
+    public struct JWeak { }
 
     [StructLayout(LayoutKind.Explicit)]
-    public unsafe partial struct JValue
+    public unsafe struct JValue
     {
         [FieldOffset(0)] public byte Z;
         [FieldOffset(0)] public sbyte B;
@@ -43,14 +43,14 @@ namespace JavaNETInterface.Jni
         JNIWeakGlobalRefType = 3,
     }
 
-    public unsafe partial struct JniNativeMethod
+    public unsafe struct JniNativeMethod
     {
         public byte* Name;
         public byte* Signature;
         public void* FnPtr;
     }
 
-    public unsafe partial struct JniInvokeInterface
+    public unsafe struct JniInvokeInterface
     {
         public void* Reserved0;
         public void* Reserved1;
@@ -63,7 +63,7 @@ namespace JavaNETInterface.Jni
         public delegate* unmanaged[Cdecl]<JavaVM*, void**, JavaVMAttachArgs*, int> AttachCurrentThreadAsDaemon;
     }
 
-    public unsafe partial struct JniNativeInterface
+    public unsafe struct JniNativeInterface
     {
         public void* Reserved0;
         public void* Reserved1;
@@ -357,13 +357,13 @@ namespace JavaNETInterface.Jni
         public JniInvokeInterface* Functions;
     }
 
-    public unsafe partial struct JavaVMOption
+    public unsafe struct JavaVMOption
     {
         public byte* OptionString;
         public void* ExtraInfo;
     }
 
-    public unsafe partial struct JavaVMInitArgs
+    public unsafe struct JavaVMInitArgs
     {
         public int Version;
         public int NOptions;
@@ -371,7 +371,7 @@ namespace JavaNETInterface.Jni
         public byte IgnoreUnrecognized;
     }
 
-    public unsafe partial struct JavaVMAttachArgs
+    public unsafe struct JavaVMAttachArgs
     {
         public int Version;
         public byte* Name;
