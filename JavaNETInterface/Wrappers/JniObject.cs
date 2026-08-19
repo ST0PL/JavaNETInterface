@@ -2,38 +2,30 @@
 
 namespace JavaNETInterface.Wrappers
 {
-    public abstract unsafe class JniObject : IDisposable
+    public abstract unsafe class JniObject(JniEnv* env, JObject* obj) : IDisposable
     {
-        private readonly Lock _disposeLock = new();
         private bool _isGlobal;
 
-        protected JniEnv* _env;
+        protected JniEnv* _env = env;
 
-        public JObject* Object { get; protected set; }
-
-        public JniObject(JniEnv* env, JObject* obj)
-        {
-            _env = env;
-            Object = obj;
-        }
+        public JObject* Object { get; protected set; } = obj;
 
         public void ChangeEnvironment(JniEnv* newEnv)
             => _env = newEnv;
 
         public void Dispose()
         {
-            lock (_disposeLock)
-            {
-                if (Object == null)
-                    return;
+            if (Object == null)
+                return;
 
-                if (_isGlobal)
-                    _env->DeleteGlobalRef(Object);
-                else
-                    _env->DeleteLocalRef(Object);
+            if (_isGlobal)
+                _env->DeleteGlobalRef(Object);
+            else
+                _env->DeleteLocalRef(Object);
 
-                Object = null;
-            }
+            Object = null;
+
+            GC.SuppressFinalize(this);
         }
 
         public T ToGlobal<T>() where T : JniObject
