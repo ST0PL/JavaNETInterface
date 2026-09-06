@@ -4,7 +4,6 @@ namespace JavaNETInterface.Wrappers
 {
     public abstract unsafe class JniObject : IDisposable
     {
-        private readonly Lock _disposeLock = new();
         private bool _isGlobal;
 
         protected JniEnv* _env;
@@ -22,18 +21,17 @@ namespace JavaNETInterface.Wrappers
 
         public void Dispose()
         {
-            lock (_disposeLock)
-            {
-                if (Object == null)
-                    return;
+            if (Object == null)
+                return;
 
-                if (_isGlobal)
-                    _env->DeleteGlobalRef(Object);
-                else
-                    _env->DeleteLocalRef(Object);
+            if (_isGlobal)
+                _env->DeleteGlobalRef(Object);
+            else
+                _env->DeleteLocalRef(Object);
 
-                Object = null;
-            }
+            Object = null;
+
+            GC.SuppressFinalize(this);
         }
 
         public T ToGlobal<T>() where T : JniObject
