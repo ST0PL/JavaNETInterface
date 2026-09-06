@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	<PublishAot>true</PublishAot>
-    <Platforms>x64;x86;AnyCPU</Platforms>
+    <Platforms>x64</Platforms>
   </PropertyGroup>
 
 </Project>
